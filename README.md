@@ -38,11 +38,11 @@ Run the container to build Ghostscript and export the artifacts:
 docker run --rm -v $(pwd)/output:/output ghostscript-static-build
 ```
 
-The `-v $(pwd)/output:/output` option maps the container's `/output` directory to a local output directory, so the built files are saved on your host machine.
+The `-v $(pwd)/output:/output` option maps the container's `/output` directory to a local `output` directory, so the built files are saved on your host machine.
 
 ### Step 4: Verify the Output
 
-After running the container, the built artifacts will be available in the output directory:
+After running the container, the built artifacts will be available in the `output` directory:
 
 ```
 ls output
@@ -51,7 +51,8 @@ ls output
 You should see the Ghostscript binaries and other generated files.
 
 ## Verifications
-Check the Target System Compatibility
+
+### Check the Target System Compatibility
 
 To verify the system architecture and platform for which the binary was built, use the file command on the generated executable:
 
@@ -63,8 +64,9 @@ Expected output for a 64-bit Linux binary:
 
 `output/gs: ELF 64-bit LSB executable, x86-64, statically linked, for GNU/Linux 4.x.x, ...`
 
-If you see statically linked in the output, the build has successfully created a static binary.
-Check if the Binary is Statically Linked
+If you see `statically linked` in the output, the build has successfully created a static binary.
+
+### Check if the Binary is Statically Linked
 
 Use the `ldd` command to verify that the executable is statically linked. A statically linked binary will show the following output:
 
@@ -77,7 +79,7 @@ Expected output for a statically linked binary:
 `not a dynamic executable`
 
 If `ldd` outputs library dependencies, the binary is not statically linked, and the build configuration needs to be adjusted.
-Notes
+## Notes
 
 - This setup uses Debian as the base image and installs the required dependencies for building Ghostscript.
 - The build process generates a statically linked executable with the required libraries (-lm -ldl -lc -static).
