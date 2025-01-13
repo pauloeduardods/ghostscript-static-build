@@ -49,9 +49,40 @@ ls output
 ```
 
 You should see the Ghostscript binaries and other generated files.
+
+## Verifications
+Check the Target System Compatibility
+
+To verify the system architecture and platform for which the binary was built, use the file command on the generated executable:
+
+```
+file output/gs
+```
+
+Expected output for a 64-bit Linux binary:
+
+`output/gs: ELF 64-bit LSB executable, x86-64, statically linked, for GNU/Linux 4.x.x, ...`
+
+If you see statically linked in the output, the build has successfully created a static binary.
+Check if the Binary is Statically Linked
+
+Use the `ldd` command to verify that the executable is statically linked. A statically linked binary will show the following output:
+
+```
+ldd output/gs
+````
+
+Expected output for a statically linked binary:
+
+`not a dynamic executable`
+
+If `ldd` outputs library dependencies, the binary is not statically linked, and the build configuration needs to be adjusted.
 Notes
 
-    This setup uses Debian as the base image and installs the required dependencies for building Ghostscript.
-    The build process generates a statically linked executable with the required libraries (-lm -ldl -lc -static).
+- This setup uses Debian as the base image and installs the required dependencies for building Ghostscript.
+- The build process generates a statically linked executable with the required libraries (-lm -ldl -lc -static).
+- For more details about Ghostscript, visit the official website.
+
+Feel free to update the [repository](https://github.com/pauloeduardods/ghostscript-static-build) and any specific paths as needed.
 
 For more details about [Ghostscript](https://www.ghostscript.com/), visit the official website.
