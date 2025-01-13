@@ -83,8 +83,7 @@ If `ldd` outputs library dependencies, the binary is not statically linked, and 
 
 - This setup uses Debian as the base image and installs the required dependencies for building Ghostscript.
 - The build process generates a statically linked executable with the required libraries (-lm -ldl -lc -static).
-- For more details about Ghostscript, visit the official website.
+- For more details about [Ghostscript](https://www.ghostscript.com/), visit the official website.
 
 Feel free to update the [repository](https://github.com/pauloeduardods/ghostscript-static-build) and any specific paths as needed.
 
-For more details about [Ghostscript](https://www.ghostscript.com/), visit the official website.
